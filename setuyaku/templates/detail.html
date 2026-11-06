@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{ recipe.title }} - 節約レシピアプリ{% endblock %}
+{% block header %}<h1>🍳 {{ recipe.title }}</h1>{% endblock %}
+{% block content %}
+<p style="font-size: 1.1em;"><strong>💰 予算:</strong> {{ recipe.budget }}円</p>
+
+<h3>🛒 材料</h3>
+<p style="background: #f4f6f8; padding: 12px; border-radius: 6px;">{{ recipe.ingredients }}</p>
+
+<h3>🔪 作り方</h3>
+<p style="background: #f4f6f8; padding: 12px; border-radius: 6px; white-space: pre-wrap;">{{ recipe.instructions }}</p>
+
+<!-- ★ 編集・削除ボタンエリア -->
+<div style="margin-top: 30px; display: flex; gap: 10px; align-items: center; border-top: 1px solid #eee; padding-top: 20px;">
+    <!-- 編集画面へのリンク -->
+    <a href="{{ url_for('edit_recipe', id=recipe.id) }}" style="padding: 8px 15px; background: #ffc107; color: #333; border-radius: 4px; text-decoration: none; font-weight: bold;">
+        ✏️ 編集する
+    </a>
+
+    <!-- 削除用のフォームとボタン -->
+    <form action="{{ url_for('delete_recipe', id=recipe.id) }}" method="POST" onsubmit="return confirm('本当にこのレシピを削除しますか？');" style="margin: 0;">
+        <button type="submit" style="padding: 8px 15px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+            🗑️ 削除する
+        </button>
+    </form>
+</div>
+
+<p style="margin-top: 20px;">
+    <a href="{{ url_for('item_list') }}">← レシピ一覧に戻る</a>
+</p>
+{% endblock %}

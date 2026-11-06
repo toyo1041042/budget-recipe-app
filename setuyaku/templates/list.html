@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}レシピ一覧 - 節約レシピアプリ{% endblock %}
+{% block header %}<h1>📋 節約レシピ一覧・検索</h1>{% endblock %}
+{% block content %}
+<!-- ★ 新しいレシピを追加するボタン -->
+<div style="margin-bottom: 25px;">
+    <a href="{{ url_for('add_recipe') }}" style="display: inline-block; padding: 10px 15px; background: #28a745; color: white; border-radius: 4px; text-decoration: none; font-weight: bold;">
+        ➕ 新しいレシピを追加する
+    </a>
+</div>
+
+<!-- ★ 検索・絞り込みフォーム -->
+<form method="GET" action="{{ url_for('item_list') }}" style="background: #f4f6f8; padding: 15px; border-radius: 6px; margin-bottom: 25px;">
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end;">
+        <div>
+            <label for="keyword" style="display: block; font-size: 0.9em; margin-bottom: 3px; font-weight: bold;">キーワード (料理名・材料):</label>
+            <input type="text" id="keyword" name="keyword" value="{{ keyword }}" placeholder="例: キャベツ、豚肉" style="padding: 6px; width: 180px;">
+        </div>
+        <div>
+            <label for="max_cost" style="display: block; font-size: 0.9em; margin-bottom: 3px; font-weight: bold;">予算上限 (円以下):</label>
+            <input type="number" id="max_cost" name="max_cost" value="{{ max_cost }}" placeholder="例: 150" style="padding: 6px; width: 120px;">
+        </div>
+        <div>
+            <button type="submit" style="padding: 7px 15px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">検索する</button>
+            <a href="{{ url_for('item_list') }}" style="margin-left: 10px; font-size: 0.9em; color: #666;">リセット</a>
+        </div>
+    </div>
+</form>
+
+<!-- レシピ一覧リスト -->
+<ul>
+    {% for recipe in recipes %}
+    <li style="margin-bottom: 15px;">
+        <a href="{{ url_for('item_detail', id=recipe.id) }}" style="font-size: 1.1em; font-weight: bold;">
+            {{ recipe.title }}
+        </a>
+        <span style="color: #666; margin-left: 10px;">（予算: <strong>{{ recipe.budget }}円</strong>）</span>
+    </li>
+    {% else %}
+    <p style="color: #666;">条件に一致するレシピが見つかりませんでした。</p>
+    {% endfor %}
+</ul>
+{% endblock %}

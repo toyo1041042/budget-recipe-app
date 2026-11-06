@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}トップページ - 節約レシピアプリ{% endblock %}
+{% block header %}<h1>✨ 節約レシピアプリへようこそ！</h1>{% endblock %}
+{% block content %}
+<p>毎日の献立と予算管理をスマートに。美味しく節約できるレシピが見つかります。</p>
+<div style="margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap;">
+    <a href="{{ url_for('item_list') }}" style="font-size: 1.1em; font-weight: bold; padding: 10px 15px; background: #0066cc; color: white; border-radius: 4px; text-decoration: none;">📋 レシピ一覧を見る</a>
+    <a href="{{ url_for('add_recipe') }}" style="font-size: 1.1em; font-weight: bold; padding: 10px 15px; background: #28a745; color: white; border-radius: 4px; text-decoration: none;">➕ 新しいレシピを追加</a>
+</div>
+{% endblock %}

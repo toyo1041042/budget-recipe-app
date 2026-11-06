@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}節約レシピアプリ{% endblock %}</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; background: #f9f9f9; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block header %}{% endblock %}
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        {% block content %}{% endblock %}
+        <p style="margin-top: 30px; font-size: 0.9em; color: #666;">
+            <a href="{{ url_for('index') }}">🏠 トップへ戻る</a>
+        </p>
+    </div>
+</body>
+</html>
